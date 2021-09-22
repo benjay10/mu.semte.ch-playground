@@ -1,0 +1,18 @@
+# Ignore some files
+
+taskell.md
+SPARQL queries vaak gebruikt.txt
+BRAINSTORM.md
+OntologyEngineering/AuctionData (exemplaar 1).owl
+OntologyEngineering/AuctionData (exemplaar 2).owl
+OntologyEngineering/AuctionData (exemplaar 3).owl
+OntologyEngineering/Auction (exemplaar 1).owl
+OntologyEngineering/Auction (exemplaar 2).owl
+OntologyEngineering/Auction (exemplaar 3).owl
+OntologyEngineering/catalog-v001.xml
+OntologyEngineering/FriendOfAFriend.rdf
+
+# Ignore some folder
+
+database/data/**
+

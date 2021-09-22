@@ -1,0 +1,109 @@
+services:
+
+  triplestore:
+    image: tenforce/virtuoso
+    ports:
+      - "8890:8890"
+      - "1111:1111"
+    volumes:
+      - "./database/data:/data:Z"
+    environment:
+      - DBA_PASSWORD=toegang
+      - SPARQL_UPDATE=true
+      - DEFAULT_GRAPH=http://www.example.com/my-graph
+
+  database:
+    image: semtech/mu-authorization:0.6.0-beta.5
+    environment:
+      MU_SPARQL_ENDPOINT: "http://triplestore:8890/sparql"
+      LOG_OUTGOING_SPARQL_QUERIES: "true"
+      LOG_OUTGOING_SPARQL_QUERY_RESPONSES: "true"
+      INSPECT_ACCESS_RIGHTS_PROCESSING: "true"
+    links:
+      - triplestore:triplestore
+      - deltanotifier:deltanotifier
+    volumes:
+      - ./mu-authorization/config:/config
+  
+  migrations:
+      image: semtech/mu-migrations-service:0.7.0
+      environment:
+        BATCH_SIZE: 100
+        MINIMUM_BATCH_SIZE: 1
+        MU_APPLICATION_GRAPH: "http://mu.semte.ch/application"
+      links:
+        - triplestore:database
+      volumes:
+        - ./mu-migrations/migrations:/data/migrations
+  
+  resource:
+    image: semtech/mu-cl-resources:latest
+    links:
+      - database:database
+    volumes:
+      - ./mu-cl-resources/configuration/resources:/config:Z
+    ports:
+      - "8081:80"
+  
+  login:
+    image: semtech/mu-login-service:2.9.0
+    environment:
+      USERS_GRAPH: "http://mu.semte.ch/graphs/public"
+      SESSIONS_GRAPH: "http://mu.semte.ch/graphs/public"
+    links:
+      - database:database
+    ports:
+      - "8082:80"
+  
+  webapp:
+    image: emberapp
+    volumes:
+      - ./AuctionWebApp/webapp/:/webapp/:Z
+    ports:
+      - "4200:4200"
+  
+  dispatcher:
+    image: semtech/mu-dispatcher:2.0.0
+    links:
+      - resource:resource
+      - webapp:webapp
+    volumes:
+      - ./mu-dispatcher/config:/config:Z
+    ports:
+      - "8085:80"
+  
+  identifier:
+    image: semtech/mu-identifier:feature-extended-timeout
+    links:
+       - dispatcher:dispatcher
+    ports:
+      - "8086:80"
+    environment:
+      DEFAULT_ACCESS_CONTROL_ALLOW_ORIGIN_HEADER: "*"
+      DEFAULT_MU_AUTH_ALLOWED_GROUPS_HEADER: "[{\"variables\":[],\"name\":\"public\"}]"
+      #DEFAULT_MU_AUTH_ALLOWED_GROUPS_HEADER: "[{\"variables\":[],\"name\":\"public\"},{\"variables\":[\"2640809039\"],\"name\":\"persondata\"},{\"variables\":[],\"name\":\"clean\"}]"
+      LOG_ALLOWED_GROUPS: "on"
+      LOG_SESSION: "on"
+
+  deltanotifier:
+    image: semtech/mu-delta-notifier:latest
+    volumes:
+      - ./mu-delta-notifier/config:/config
+    environment:
+      DEBUG_DELTA_SEND: "on"
+      DEBUG_DELTA_MATCH: "on"
+
+#  mockaccess:
+#    image: madnificent/mu-mock-access-rights-service:latest
+#    ports:
+#      - "8083:80"
+
+  mockaccess:
+    image: semtech/mu-javascript-template
+    ports:
+      - "8084:80"
+    environment:
+      NODE_ENV: "development"
+    volumes:
+      - ./mock-access/:/app/
+

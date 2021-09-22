@@ -1,0 +1,873 @@
+@prefix : <http://www.semanticweb.org/ben/ontologies/auction#> .
+@prefix mu: <http://mu.semte.ch/vocabularies/core/> .
+@prefix account: <http://mu.semte.ch/vocabularies/account/> .
+@prefix session: <http://mu.semte.ch/vocabularies/session/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/ben/ontologies/auction> .
+
+<http://www.semanticweb.org/ben/ontologies/auction> rdf:type owl:Ontology ;
+                                                     owl:imports foaf: ;
+                                                     rdfs:comment "This ontology can be used to describe auctions and related articles."^^xsd:string .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://www.geneontology.org/formats/oboInOwl#hasOBOFormatVersion
+<http://www.geneontology.org/formats/oboInOwl#hasOBOFormatVersion> rdf:type owl:AnnotationProperty ;
+                                                                   rdfs:label "has_obo_format_version"^^xsd:string .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#dateTime
+xsd:dateTime rdfs:comment "A lot or auction can have extra resource such as images, contracts, regulations, and such. These can be found on a filesystempath described by this property." .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/ben/ontologies/auction#byUser
+:byUser rdf:type owl:ObjectProperty ;
+        rdfs:domain :Bid ;
+        rdfs:range :Client .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#company
+:company rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf owl:topObjectProperty ;
+         rdfs:range :Company .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#condition
+:condition rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdfs:domain :Lot ;
+           rdfs:range :ProductCondition .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#employee
+:employee rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#forCompany
+:forCompany rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :company ;
+            rdfs:domain :Seller .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#hasBid
+:hasBid rdf:type owl:ObjectProperty ;
+        owl:inverseOf :onLot ;
+        rdfs:domain :Lot ;
+        rdfs:range :Bid .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#hasFavorite
+:hasFavorite rdf:type owl:ObjectProperty ;
+             rdfs:domain :Client ;
+             rdfs:range :Lot .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#hasLot
+:hasLot rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf owl:topObjectProperty ;
+        owl:inverseOf :lotOf ;
+        rdfs:domain :Auction ;
+        rdfs:range :Lot .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#inCategory
+:inCategory rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#lotOf
+:lotOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#onLot
+:onLot rdf:type owl:ObjectProperty ;
+       rdfs:domain :Bid ;
+       rdfs:range :Lot .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#organisedByCompany
+:organisedByCompany rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :company ;
+                    rdfs:domain :Auction .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#parentCategory
+:parentCategory rdf:type owl:ObjectProperty ;
+                owl:inverseOf :subCategory .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#reason
+:reason rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf owl:topObjectProperty ;
+        rdfs:domain :Auction ;
+        rdfs:range :ReasonForAuction .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#secretBid
+:secretBid rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdfs:domain :ReserveAuctionLot ;
+           rdfs:range :SecretBid .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#sellingCompany
+:sellingCompany rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :company ;
+                rdfs:domain :Auction .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#sellingParticipant
+:sellingParticipant rdf:type owl:ObjectProperty ;
+                    rdfs:domain :Auction ;
+                    rdfs:range :Seller .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#subCategory
+:subCategory rdf:type owl:ObjectProperty ,
+                      owl:InverseFunctionalProperty ;
+             rdfs:domain :Category ;
+             rdfs:range :Category .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://mu.semte.ch/vocabularies/core/uuid
+mu:uuid rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#VAT
+:VAT rdf:type owl:DatatypeProperty ;
+     rdfs:subPropertyOf owl:topDataProperty ;
+     rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#VATnumber
+:VATnumber rdf:type owl:DatatypeProperty ;
+           rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#VATonAuctionTax
+:VATonAuctionTax rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :VAT .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#address
+:address rdf:type owl:DatatypeProperty ;
+         rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#amountOfObject
+:amountOfObject rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Lot ;
+                rdfs:range xsd:integer .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#auctionTax
+:auctionTax rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :VAT .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#balance
+:balance rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Participant ;
+         rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#bidAmount
+:bidAmount rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Bid ;
+           rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#description
+:description rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#email
+:email rdf:type owl:DatatypeProperty ;
+       rdfs:domain :User ;
+       rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#endDateTime
+:endDateTime rdf:type owl:DatatypeProperty ;
+             rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#incrementTime
+:incrementTime rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
+               rdfs:domain :ProlongedTimeAuctionLot ;
+               rdfs:range xsd:integer .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#language
+:language rdf:type owl:DatatypeProperty ;
+          rdfs:domain :User ;
+          rdfs:range xsd:language .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#minimumSellingAmount
+:minimumSellingAmount rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :MinimumBidAuctionLot ;
+                      rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#productVAT
+:productVAT rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :VAT .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#resource
+:resource rdf:type owl:DatatypeProperty ;
+          rdfs:range xsd:string ;
+          rdfs:comment "A lot or auction can have resources such as contracts, images, regulations, etcetera. These can be found on a filesystem location described by this property." .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#secretTargetAmount
+:secretTargetAmount rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :ReserveAuctionLot ;
+                    rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#startAmount
+:startAmount rdf:type owl:DatatypeProperty ;
+             rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#startDateTime
+:startDateTime rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Auction ;
+               rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#stepAmount
+:stepAmount rdf:type owl:DatatypeProperty ;
+            rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#subject
+:subject rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf owl:topDataProperty ;
+         rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#takeAwayAddress
+:takeAwayAddress rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf owl:topDataProperty ;
+                 rdfs:domain :Auction ;
+                 rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#takeAwayDateTime
+:takeAwayDateTime rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf owl:topDataProperty ;
+                  rdfs:domain :Auction ;
+                  rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#timeStamp
+:timeStamp rdf:type owl:DatatypeProperty ;
+           rdfs:range xsd:dateTimeStamp .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#timezone
+:timezone rdf:type owl:DatatypeProperty ;
+          rdfs:domain :User ;
+          rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#visitDateTime
+:visitDateTime rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Auction ;
+               rdfs:range xsd:dateTime .
+
+
+###  http://mu.semte.ch/vocabularies/account/password
+account:password rdf:type owl:DatatypeProperty .
+
+
+###  http://mu.semte.ch/vocabularies/account/salt
+account:salt rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/ben/ontologies/auction#AbsoluteAuctionLot
+:AbsoluteAuctionLot rdf:type owl:Class ;
+                    rdfs:subClassOf :Lot ;
+                    rdfs:comment "An Absolute Auction Lot will be auctioned by bidding up from a start amount. After a specific time, the bidder with the highest amount can by the Lot."@en ;
+                    rdfs:label "Absolute Auction Lot"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#AbsoluteExpensiveLot
+:AbsoluteExpensiveLot rdf:type owl:Class ;
+                      owl:equivalentClass [ owl:intersectionOf ( :Lot
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty :startAmount ;
+                                                                   owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                       owl:onDatatype xsd:double ;
+                                                                                       owl:withRestrictions ( [ xsd:minInclusive "1000.0"^^xsd:double
+                                                                                                              ]
+                                                                                                            )
+                                                                                     ]
+                                                                 ]
+                                                               ) ;
+                                            rdf:type owl:Class
+                                          ] ;
+                      rdfs:subClassOf :Lot ;
+                      rdfs:comment "An Absolute Expensive Lot is a lot that has a very high starting price."@en ;
+                      rdfs:label "Absolute Expensive Lot" ;
+                      owl:incompatibleWith "Not going to work in OWL. No support for integer value comparing."@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#Administrator
+:Administrator rdf:type owl:Class ;
+               rdfs:subClassOf :Support ;
+               rdfs:comment "An Administrator can see and manage all data in the information system."@en ;
+               rdfs:label "Administrator"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#Aged
+:Aged rdf:type owl:Class ;
+      rdfs:subClassOf :Old ;
+      rdfs:comment "Product is old, and shows signs of aging and use."@en ;
+      rdfs:label "Aged"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#Auction
+:Auction rdf:type owl:Class ;
+         rdfs:comment "An Auction is a collection of Lots, offered by a selling company or other seller and put up for sale with an auctioning method."@en ;
+         rdfs:label "Auction"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#Bid
+:Bid rdf:type owl:Class ;
+     rdfs:comment "A Bid is an amount of money offered by a buyer who wishes to buy something."@en ;
+     rdfs:label "Bid"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#BigAuction
+:BigAuction rdf:type owl:Class ;
+            owl:equivalentClass [ owl:intersectionOf ( :Auction
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty :hasLot ;
+                                                         owl:minQualifiedCardinality "5"^^xsd:nonNegativeInteger ;
+                                                         owl:onClass :Lot
+                                                       ]
+                                                     ) ;
+                                  rdf:type owl:Class
+                                ] ;
+            rdfs:comment "Big Auctions have a numerous amount of lots."@en ;
+            rdfs:label "Big Auction"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#BrandNew
+:BrandNew rdf:type owl:Class ;
+          rdfs:subClassOf :New ;
+          owl:disjointWith :DamagedPackaging ;
+          rdfs:comment "Indicated that a product is still completely new."@en ;
+          rdfs:label "Brand New"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#Broken
+:Broken rdf:type owl:Class ;
+        rdfs:subClassOf :Used ;
+        rdfs:comment "Product is broken."@en ;
+        rdfs:label "Broken"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#Category
+:Category rdf:type owl:Class ;
+          rdfs:comment "A Category groups items in a logically coherent group, usually with specific purposes, or physical properties. Categories can inherently be subclassed to specify a more accurate category."@en ;
+          rdfs:label "Category"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#Client
+:Client rdf:type owl:Class ;
+        rdfs:subClassOf :Participant ;
+        owl:disjointWith :Seller ;
+        rdfs:comment "A Client can actively partake in the bidding process."@en ;
+        rdfs:label "Client"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#Company
+:Company rdf:type owl:Class ;
+         rdfs:comment "Represents a company."@en ;
+         rdfs:label "Company"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#Damaged
+:Damaged rdf:type owl:Class ;
+         rdfs:subClassOf :Old ;
+         rdfs:comment "Product is old and looks damaged."@en ;
+         rdfs:label "Damaged"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#DamagedPackaging
+:DamagedPackaging rdf:type owl:Class ;
+                  rdfs:subClassOf :New ;
+                  rdfs:comment "Product is new but packaging could be damaged."@en ;
+                  rdfs:label "Damaged Packaging"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#Excellent
+:Excellent rdf:type owl:Class ;
+           rdfs:subClassOf :Old ;
+           rdfs:comment "Product is old, but in excellent condition."@en ;
+           rdfs:label "Excellent"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#ExcellentAntique
+:ExcellentAntique rdf:type owl:Class ;
+                  owl:equivalentClass [ owl:intersectionOf ( :Lot
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty :condition ;
+                                                               owl:someValuesFrom :Excellent
+                                                             ]
+                                                           ) ;
+                                        rdf:type owl:Class
+                                      ] ;
+                  rdfs:subClassOf :Specials ;
+                  rdfs:comment "An Excellent Antique is an old product that is in very good condition."@en ;
+                  rdfs:label "Excellent Antique"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#Excess
+:Excess rdf:type owl:Class ;
+        rdfs:subClassOf :ReasonForAuction ;
+        rdfs:comment "The selling party has too many of such items in stock and wants to get rid of them."@en ;
+        rdfs:label "Excess"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#Expiration
+:Expiration rdf:type owl:Class ;
+            rdfs:subClassOf :ReasonForAuction ;
+            rdfs:comment "Product are about to expire."@en ;
+            rdfs:label "Expiration"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#FixedTimeAuctionLot
+:FixedTimeAuctionLot rdf:type owl:Class ;
+                     rdfs:subClassOf :AbsoluteAuctionLot ;
+                     owl:disjointWith :ProlongedTimeAuctionLot ;
+                     rdfs:comment "A Fixed Time Auction Lot is definitively over after a specific time. The bidder that made the last bid in time wins the auction."@en ;
+                     rdfs:label "Fixed Time Auction Lot"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#Good
+:Good rdf:type owl:Class ;
+      rdfs:subClassOf :Used ;
+      rdfs:comment "Product is used, but in good condition."@en ;
+      rdfs:label "Good"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#GoodCause
+:GoodCause rdf:type owl:Class ;
+           rdfs:subClassOf :ReasonForAuction ;
+           rdfs:comment "The seller would like to organise an auction to raise money for a good cause."@en ;
+           rdfs:label "Good Cause"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#Judicial
+:Judicial rdf:type owl:Class ;
+          rdfs:subClassOf :ReasonForAuction ;
+          rdfs:comment "A company has declare banrupcy and needs to get rid of their stuff, or are otherwise forced to sell goods on judicial grounds."@en ;
+          rdfs:label "Judicial"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#Lot
+:Lot rdf:type owl:Class ;
+     rdfs:comment "A Lot is product or group of products that is put up for auctioning."@en ;
+     rdfs:label "Lot"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#MinimumBidAuctionLot
+:MinimumBidAuctionLot rdf:type owl:Class ;
+                      rdfs:subClassOf :Lot ;
+                      rdfs:comment "A Minimum Bid Auction Lot can only be won when a bid exceeds a specified minimum amount."@en ;
+                      rdfs:label "Minimum Bid Auction Lot"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#New
+:New rdf:type owl:Class ;
+     rdfs:subClassOf :ProductCondition ;
+     rdfs:comment "New indicates that a product has not been used before and/or is in new condition and still in packaging."@en ;
+     rdfs:label "New"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#Old
+:Old rdf:type owl:Class ;
+     rdfs:subClassOf :ProductCondition ;
+     rdfs:comment "Indicated the product is old."@en ;
+     rdfs:label "Old"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#Participant
+:Participant rdf:type owl:Class ;
+             rdfs:subClassOf :User ;
+             owl:disjointWith :Support ;
+             rdfs:comment "A Participant is a user that actively participates in the functionalities the information system was built for."@en ;
+             rdfs:label "Participant"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#PopularLot
+:PopularLot rdf:type owl:Class ;
+            owl:equivalentClass [ owl:intersectionOf ( :Lot
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty :hasBid ;
+                                                         owl:minQualifiedCardinality "10"^^xsd:nonNegativeInteger ;
+                                                         owl:onClass :Bid
+                                                       ]
+                                                     ) ;
+                                  rdf:type owl:Class
+                                ] ;
+            rdfs:subClassOf :Lot ;
+            rdfs:comment "A Popular Lot has a large amount of bids."@en ;
+            rdfs:label "Popular Lot"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#ProductCondition
+:ProductCondition rdf:type owl:Class ;
+                  rdfs:comment "These classes can be used to describe the condition of a product."@en ;
+                  rdfs:label "Product Condition"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#ProlongedTimeAuctionLot
+:ProlongedTimeAuctionLot rdf:type owl:Class ;
+                         rdfs:subClassOf :AbsoluteAuctionLot ;
+                         rdfs:comment "During a Prolonged Time Auction Lot, after every bid comes at least another specified time interval, even when the auctioning for that lot has officially ended. This allows potential buyers to bid even higher."@en ;
+                         rdfs:label "Prolonged Time Auction Lot"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#ReasonForAuction
+:ReasonForAuction rdf:type owl:Class ;
+                  rdfs:comment "Companies and sellers can have a range of reasons to organise an auction."@en ;
+                  rdfs:label "Reason for Auctioning"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#RelativeExpensiveLot
+:RelativeExpensiveLot rdf:type owl:Class ;
+                      rdfs:subClassOf :Lot ;
+                      rdfs:comment "A Relative Expensive Lot is a lot that has a high bid amount compared to the starting price. This usually indicates a much wanted item."@en ;
+                      rdfs:label "Relative Expensive Lot"@en ;
+                      owl:incompatibleWith "Not going to work in OWL. No support for integer value comparing."@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#ReserveAuctionLot
+:ReserveAuctionLot rdf:type owl:Class ;
+                   rdfs:subClassOf :Lot ;
+                   rdfs:comment "In Reserve Auction Lot, buyers secretly bid against each other. The seller can discretely choose the winner of the auctioning."@en ;
+                   rdfs:label "Reserve Auction Lot"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#SecretBid
+:SecretBid rdf:type owl:Class ;
+           rdfs:subClassOf :Bid ;
+           rdfs:comment "A secret bid contains an amount of money offered by a buyer who wishes to by something, usually in a reserve auction, where buyers don't know about the offers of others. The selling party can freely choose among the secret bids to select a buyer."@en ;
+           rdfs:label "Secret Bid"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#Seller
+:Seller rdf:type owl:Class ;
+        rdfs:subClassOf :Participant ;
+        rdfs:comment "A Seller is a user that has put a product up for sale in the information system."@en ;
+        rdfs:label "Seller"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#Specials
+:Specials rdf:type owl:Class ;
+          rdfs:comment "This Specials class represents some very attentionworthy lots based on some conditions."@en ;
+          rdfs:label "Specials"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#Stunt
+:Stunt rdf:type owl:Class ;
+       rdfs:subClassOf :ReasonForAuction ;
+       rdfs:comment "A company wants to sell goods to attract attention."@en ;
+       rdfs:label "Stunt"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#Support
+:Support rdf:type owl:Class ;
+         rdfs:subClassOf :User ;
+         rdfs:comment "Support users do not actively partake in the bidding process and can not buy lots. These users manage the information system itself."@en ;
+         rdfs:label "Support"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#Used
+:Used rdf:type owl:Class ;
+      rdfs:subClassOf :ProductCondition ;
+      rdfs:comment "Indicates that a product is in used condition, but can be in various conditions."@en ;
+      rdfs:label "Used"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#User
+:User rdf:type owl:Class ;
+      owl:equivalentClass foaf:Person ;
+      rdfs:comment "A User is, in general, someone that uses an information system."@en ;
+      rdfs:label "User"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#ValuedAntique
+:ValuedAntique rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :Lot
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :condition ;
+                                                            owl:someValuesFrom :Aged
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] ;
+               rdfs:subClassOf :Specials ;
+               rdfs:comment "A Valued Antique is an old product in aged, but mostly good condition."@en ;
+               rdfs:label "Valued Antique"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#WornOut
+:WornOut rdf:type owl:Class ;
+         rdfs:subClassOf :Used ;
+         rdfs:comment "Product is used and shows signs of wear and tear."@en ;
+         rdfs:label "Worn Out"@en .
+
+
+###  http://xmlns.com/foaf/0.1/Person
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/ben/ontologies/auction#AttentionSeekingReason
+:AttentionSeekingReason rdf:type owl:NamedIndividual ,
+                                 :Stunt ;
+                        mu:uuid "2054568005" ;
+                        rdfs:label "Attention Seeking"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#BankrupcyReason
+:BankrupcyReason rdf:type owl:NamedIndividual ,
+                          :Judicial ;
+                 mu:uuid "1558000300" ;
+                 rdfs:label "Bankrupcy"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#EnvironmentReason
+:EnvironmentReason rdf:type owl:NamedIndividual ,
+                            :GoodCause ;
+                   mu:uuid "1058844799" ;
+                   rdfs:label "Environment"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#ForcedSaleReason
+:ForcedSaleReason rdf:type owl:NamedIndividual ,
+                           :Judicial ;
+                  mu:uuid "1951990682" ;
+                  rdfs:label "Forced Sale"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#HumanitarianReason
+:HumanitarianReason rdf:type owl:NamedIndividual ,
+                             :GoodCause ;
+                    mu:uuid "2958010270" ;
+                    rdfs:label "Humanitarian"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#LeftoverReason
+:LeftoverReason rdf:type owl:NamedIndividual ,
+                         :Excess ;
+                mu:uuid "3776691312" ;
+                rdfs:label "Leftover"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#NewBrandNewCondition
+:NewBrandNewCondition rdf:type owl:NamedIndividual ,
+                               :BrandNew ;
+                      mu:uuid "1741470259" ;
+                      rdfs:label "Brand New"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#NewDamagedPackagingCondition
+:NewDamagedPackagingCondition rdf:type owl:NamedIndividual ,
+                                       :DamagedPackaging ;
+                              mu:uuid "998063886" ;
+                              rdfs:label "Damaged Packaging"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#OldAgedContition
+:OldAgedContition rdf:type owl:NamedIndividual ,
+                           :Aged ;
+                  mu:uuid "3442414990" ;
+                  rdfs:label "Aged"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#OldDamagedCondition
+:OldDamagedCondition rdf:type owl:NamedIndividual ,
+                              :Damaged ;
+                     mu:uuid "1547801822" ;
+                     rdfs:label "Damaged"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#OldExellentCondition
+:OldExellentCondition rdf:type owl:NamedIndividual ,
+                               :Excellent ;
+                      mu:uuid "1612170752" ;
+                      rdfs:label "Excellent"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#PopularityReason
+:PopularityReason rdf:type owl:NamedIndividual ,
+                           :Stunt ;
+                  mu:uuid "4011607269" ;
+                  rdfs:label "Popularity"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#ProductsExpireSoonReason
+:ProductsExpireSoonReason rdf:type owl:NamedIndividual ,
+                                   :Expiration ;
+                          mu:uuid "2055478375" ;
+                          rdfs:label "Products Expire Soon"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#ProductsExpiredReason
+:ProductsExpiredReason rdf:type owl:NamedIndividual ,
+                                :Expiration ;
+                       mu:uuid "3096693960" ;
+                       rdfs:label "Products Expired"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#TooMuchOrderedReason
+:TooMuchOrderedReason rdf:type owl:NamedIndividual ,
+                               :Excess ;
+                      mu:uuid "1103381017" ;
+                      rdfs:label "Too Much Ordered"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#UsedBrokenCondition
+:UsedBrokenCondition rdf:type owl:NamedIndividual ,
+                              :Broken ;
+                     mu:uuid "3412510897" ;
+                     rdfs:label "Broken"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#UsedGoodCondition
+:UsedGoodCondition rdf:type owl:NamedIndividual ,
+                            :Good ;
+                   mu:uuid "1167222733" ;
+                   rdfs:label "Good"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#UsedWornOutCondition
+:UsedWornOutCondition rdf:type owl:NamedIndividual ,
+                               :WornOut ;
+                      mu:uuid "1864028536" ;
+                      rdfs:label "Worn Out"@en .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Aged
+                :Damaged
+                :Excellent
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Auction
+                :Bid
+                :Category
+                :Company
+                :ProductCondition
+                :ReasonForAuction
+                :Specials
+                :User
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Broken
+                :Good
+                :WornOut
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Excess
+                :Expiration
+                :GoodCause
+                :Judicial
+                :Stunt
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :New
+                :Old
+                :Used
+              )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :AttentionSeekingReason
+                        :PopularityReason
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :BankrupcyReason
+                        :ForcedSaleReason
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :EnvironmentReason
+                        :HumanitarianReason
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :LeftoverReason
+                        :TooMuchOrderedReason
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :ProductsExpireSoonReason
+                        :ProductsExpiredReason
+                      )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

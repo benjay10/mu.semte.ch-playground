@@ -1,0 +1,822 @@
+@prefix : <http://www.semanticweb.org/ben/data/auction#> .
+@prefix au: <http://www.semanticweb.org/ben/ontologies/auction#> .
+@prefix mu: <http://mu.semte.ch/vocabularies/core/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix account: <http://mu.semte.ch/vocabularies/account/> .
+@prefix session: <http://mu.semte.ch/vocabularies/session/> .
+@base <http://www.semanticweb.org/ben/data/auction> .
+
+<http://www.semanticweb.org/ben/data/auction> rdf:type owl:Ontology ;
+                                               owl:imports <http://www.semanticweb.org/ben/ontologies/auction> ,
+                                                           foaf: ;
+                                               rdfs:comment "This file contains some initial data for the Auction ontology."@en .
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/ben/data/auction#admin
+:admin rdf:type owl:NamedIndividual ,
+                au:Administrator ;
+       foaf:account :adminAccount ;
+       mu:uuid "1501690079" ;
+       au:email "admin@redpencil.io"^^xsd:string ;
+       au:language "en"^^xsd:string ;
+       au:timezone "GMT+1"^^xsd:string ;
+       foaf:name "Admin Admins"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#adminAccount
+:adminAccount rdf:type owl:NamedIndividual ,
+                       foaf:OnlineAccount ;
+              mu:uuid "2571684610" ;
+              account:password "$2y$10$PnwKzCFszubR4w9OT74LdOx9whWJI2P67YC.jMrdF6CExODAak//C" ;
+              account:salt "abc" ;
+              foaf:accountName "admin" ;
+              account:status <http://mu.semte.ch/vocabularies/account/status/active> .
+
+
+###  http://www.semanticweb.org/ben/data/auction#arPaintingOfFruit1
+:arPaintingOfFruit1 rdf:type owl:NamedIndividual ,
+                             au:ProlongedTimeAuctionLot ;
+                    au:condition au:OldAgedContition ;
+                    au:inCategory :art ;
+                    mu:uuid "324113442" ;
+                    au:VATonAuctionTax "21.0"^^xsd:float ;
+                    au:amountOfObject 1 ;
+                    au:auctionTax "17.0"^^xsd:float ;
+                    au:description "Acrimboldo is the master of painting with fruits and vegetables. This piece is no exception." ;
+                    au:endDateTime "2021-09-16T15:00:00"^^xsd:dateTime ;
+                    au:incrementTime 300 ;
+                    au:productVAT "21.0"^^xsd:float ;
+                    au:startAmount "5000.0"^^xsd:double ;
+                    au:stepAmount "100.0"^^xsd:double ;
+                    au:subject "Painting of some fruit in a bowl"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#arPaintingOfFruit2
+:arPaintingOfFruit2 rdf:type owl:NamedIndividual ,
+                             au:ProlongedTimeAuctionLot ;
+                    au:condition au:OldExellentCondition ;
+                    au:inCategory :art ;
+                    mu:uuid "2653394042" ;
+                    au:VATonAuctionTax "21.0"^^xsd:float ;
+                    au:amountOfObject 1 ;
+                    au:auctionTax "17.0"^^xsd:float ;
+                    au:description "Acrimboldo is the master of painting with fruits and vegetables. This piece is no exception." ;
+                    au:endDateTime "2021-09-16T15:00:00"^^xsd:dateTime ;
+                    au:incrementTime 300 ;
+                    au:productVAT "21.0"^^xsd:float ;
+                    au:startAmount "1000000.0"^^xsd:double ;
+                    au:stepAmount "10000.0"^^xsd:double ;
+                    au:subject "Arcimboldo painting of person with fruit and vegetables. Arcimboldo original!"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#arPaintingOfFruit3
+:arPaintingOfFruit3 rdf:type owl:NamedIndividual ,
+                             au:ProlongedTimeAuctionLot ;
+                    au:condition au:OldExellentCondition ;
+                    au:inCategory :art ;
+                    mu:uuid "1756754906" ;
+                    au:VATonAuctionTax "21.0"^^xsd:float ;
+                    au:amountOfObject 1 ;
+                    au:auctionTax "17.0"^^xsd:float ;
+                    au:description "Acrimboldo is the master of painting with fruits and vegetables. This piece is no exception." ;
+                    au:endDateTime "2021-09-16T15:00:00"^^xsd:dateTime ;
+                    au:incrementTime 300 ;
+                    au:productVAT "21.0"^^xsd:float ;
+                    au:startAmount "1000000.0"^^xsd:double ;
+                    au:stepAmount "10000.0"^^xsd:double ;
+                    au:subject "Arcimboldo painting of person with fruit and vegetables. Arcimboldo original!"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#arStatueOfKingAlbert
+:arStatueOfKingAlbert rdf:type owl:NamedIndividual ,
+                               au:ReserveAuctionLot ;
+                      au:condition au:OldExellentCondition ;
+                      au:inCategory :art ;
+                      mu:uuid "4073498092" ;
+                      au:VATonAuctionTax "21.0"^^xsd:float ;
+                      au:amountOfObject 1 ;
+                      au:auctionTax "17.0"^^xsd:float ;
+                      au:productVAT "21.0"^^xsd:float ;
+                      au:secretTargetAmount "300000.0"^^xsd:double ;
+                      au:startAmount "150000.0"^^xsd:double ;
+                      au:subject "Big statue of King Albert (1951)"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#art
+:art rdf:type owl:NamedIndividual ,
+              au:Category ;
+     mu:uuid "1469746783" ;
+     rdfs:label "Art"@en .
+
+
+###  http://www.semanticweb.org/ben/data/auction#artolomeus
+:artolomeus rdf:type owl:NamedIndividual ,
+                     au:Company ;
+            mu:uuid "1232705014" ;
+            au:VATnumber "99876555678" ;
+            au:address "Kunstkaai 65\\n2000 Antwerpen" ;
+            au:description "All types of art you can imagine." ;
+            foaf:name "Artolomeus" .
+
+
+###  http://www.semanticweb.org/ben/data/auction#auctionForArtolomeus
+:auctionForArtolomeus rdf:type owl:NamedIndividual ,
+                               au:Auction ;
+                      au:hasLot :arPaintingOfFruit1 ,
+                                :arPaintingOfFruit2 ,
+                                :arPaintingOfFruit3 ,
+                                :arStatueOfKingAlbert ;
+                      au:inCategory :art ;
+                      au:organisedByCompany :redpencilAuctions ;
+                      au:reason au:BankrupcyReason ;
+                      au:sellingCompany :artolomeus ;
+                      mu:uuid "658804915" ;
+                      au:description "Due to bankrupcy, everything needs to go fast."^^xsd:string ;
+                      au:endDateTime "2021-09-16T15:00:00"^^xsd:dateTime ;
+                      au:startDateTime "2021-08-18T16:04:23"^^xsd:dateTime ;
+                      au:subject "The most beautiful art ever seen"^^xsd:string ;
+                      au:takeAwayAddress "Kunstkaai 65\\n2000 Antwerpen"^^xsd:string ;
+                      au:takeAwayDateTime "2021-09-18T14:00:00"^^xsd:dateTime ;
+                      au:visitDateTime "2021-08-24T14:00:00"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/ben/data/auction#auctionForCaronne
+:auctionForCaronne rdf:type owl:NamedIndividual ,
+                            au:Auction ;
+                   au:hasLot :ccBuick ,
+                             :ccCadillac ,
+                             :ccSaab ;
+                   au:inCategory :cars ;
+                   au:organisedByCompany :redpencilAuctions ;
+                   au:reason au:TooMuchOrderedReason ;
+                   au:sellingCompany :caronne ;
+                   au:sellingParticipant :charlyCaronne ;
+                   mu:uuid "2938639640" ;
+                   au:description "Some old cars need to go. Theres is no more space left in the showroom."^^xsd:string ;
+                   au:endDateTime "2021-09-16T15:00:00"^^xsd:dateTime ;
+                   au:startDateTime "2021-08-18T16:04:23"^^xsd:dateTime ;
+                   au:subject "Old cars"^^xsd:string ;
+                   au:takeAwayAddress "Watersas 37\\n1980 Zemst"^^xsd:string ;
+                   au:takeAwayDateTime "2021-09-18T14:00:00"^^xsd:dateTime ;
+                   au:visitDateTime "2021-08-21T14:00:00"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/ben/data/auction#auctionForElectronicExuberance
+:auctionForElectronicExuberance rdf:type owl:NamedIndividual ,
+                                         au:Auction ;
+                                au:hasLot :eeAmplifier ,
+                                          :eeHeadphones ,
+                                          :eeHomeCinemaKit ;
+                                au:inCategory :electronic ;
+                                au:organisedByCompany :redpencilAuctions ;
+                                au:reason au:AttentionSeekingReason ;
+                                au:sellingCompany :electronicExuberance ;
+                                mu:uuid "3461052219" ;
+                                au:description "We are moving to another location. These products are up for sale to prevent them from being moved."^^xsd:string ;
+                                au:endDateTime "2021-09-16T15:00:00"^^xsd:dateTime ;
+                                au:startDateTime "2021-08-18T16:04:23"^^xsd:dateTime ;
+                                au:subject "Everything Electronic"^^xsd:string ;
+                                au:takeAwayAddress "Ionicpath 4.6\\n2823 Protionium"^^xsd:string ;
+                                au:takeAwayDateTime "2021-09-18T14:00:00"^^xsd:dateTime ;
+                                au:visitDateTime "2021-08-24T14:00:00"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/ben/data/auction#auctionForHousingHooligans
+:auctionForHousingHooligans rdf:type owl:NamedIndividual ,
+                                     au:Auction ;
+                            au:hasLot :hhDeepHouse1 ,
+                                      :hhDeepHouse2 ,
+                                      :hhDeepHouse3 ,
+                                      :hhDeepHouse4 ,
+                                      :hhDeepHouse5 ,
+                                      :hhHughLaurie1 ,
+                                      :hhHughLaurie2 ,
+                                      :hhHughLaurie3 ,
+                                      :hhHughLaurie4 ,
+                                      :hhHughLaurie5 ;
+                            au:inCategory :housing ;
+                            au:organisedByCompany :redpencilAuctions ;
+                            au:reason au:HumanitarianReason ;
+                            au:sellingCompany :housingHooligans ;
+                            mu:uuid "1571684610" ;
+                            au:description "These houses are super easy to construct and come in a prebuilt format. We are selling these at a potientially low price and for every house sold, we donate to a good cause."^^xsd:string ;
+                            au:endDateTime "2021-09-16T15:00:00"^^xsd:dateTime ;
+                            au:startDateTime "2021-08-18T16:04:23"^^xsd:dateTime ;
+                            au:subject "Very practical houses"^^xsd:string ;
+                            au:takeAwayAddress "Bollenberg 17\\n3210 Lubbeek"^^xsd:string ;
+                            au:takeAwayDateTime "2021-09-18T14:00:00"^^xsd:dateTime ;
+                            au:visitDateTime "2021-08-24T14:00:00"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/ben/data/auction#benBehaeghe
+:benBehaeghe rdf:type owl:NamedIndividual ,
+                      au:Client ;
+             au:hasFavorite :eeHeadphones ;
+             foaf:account :benBehaegheAccount ;
+             mu:uuid "2640809039" ;
+             au:VATnumber "1234567890" ;
+             au:address "Houtemsesteenweg 68\\n1800 Vilvoorde" ;
+             au:balance "1000.0"^^xsd:double ;
+             au:email "ben.behaeghe@redpencil.io" ;
+             au:language "nl" ;
+             au:timezone "GMT+1" ;
+             foaf:firstName "Ben" ;
+             foaf:lastName "Behaeghe" ;
+             foaf:name "Ben Behaeghe"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#benBehaegheAccount
+:benBehaegheAccount rdf:type owl:NamedIndividual ,
+                             foaf:OnlineAccount ;
+                    mu:uuid "3571684610" ;
+                    account:password "$2y$10$PnwKzCFszubR4w9OT74LdOx9whWJI2P67YC.jMrdF6CExODAak//C" ;
+                    account:salt "abc" ;
+                    foaf:accountName "ben" ;
+                    account:status <http://mu.semte.ch/vocabularies/account/status/active> .
+
+
+###  http://www.semanticweb.org/ben/data/auction#bertBibbers
+:bertBibbers rdf:type owl:NamedIndividual ,
+                      au:Client ;
+             foaf:account :bertBibbersAccount ;
+             mu:uuid "354327158" ;
+             au:VATnumber "098765543321" ;
+             au:address "Lelieveld 23\\n1800 Vilvoorde" ;
+             au:balance "1500.0"^^xsd:double ;
+             au:email "bert.bibbers@redpencil.io" ;
+             au:language "nl" ;
+             au:timezone "GMT+1" ;
+             foaf:firstName "Bert" ;
+             foaf:lastName "Bibbers" ;
+             foaf:name "Bert Bibbers"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#bertBibbersAccount
+:bertBibbersAccount rdf:type owl:NamedIndividual ,
+                             foaf:OnlineAccount ;
+                    mu:uuid "4571684610" ;
+                    account:password "$2y$10$PnwKzCFszubR4w9OT74LdOx9whWJI2P67YC.jMrdF6CExODAak//C" ;
+                    account:salt "abc" ;
+                    foaf:accountName "bert" ;
+                    account:status <http://mu.semte.ch/vocabularies/account/status/active> .
+
+
+###  http://www.semanticweb.org/ben/data/auction#boats
+:boats rdf:type owl:NamedIndividual ,
+                au:Category ;
+       au:parentCategory :waterVehicles ;
+       mu:uuid "2772154165" ;
+       rdfs:label "Boats"@en .
+
+
+###  http://www.semanticweb.org/ben/data/auction#caronne
+:caronne rdf:type owl:NamedIndividual ,
+                  au:Company ;
+         mu:uuid "4033990345" ;
+         au:VATnumber "772345098776" ;
+         au:address "Watersas 37\\n1980 Zemst" ;
+         au:description "We sell new and old cars in our showroom." ;
+         foaf:name "Caronne Cars" .
+
+
+###  http://www.semanticweb.org/ben/data/auction#cars
+:cars rdf:type owl:NamedIndividual ,
+               au:Category ;
+      au:parentCategory :landVehicles ;
+      mu:uuid "985189605" ;
+      rdfs:label "Cars"@en .
+
+
+###  http://www.semanticweb.org/ben/data/auction#ccBuick
+:ccBuick rdf:type owl:NamedIndividual ,
+                  au:MinimumBidAuctionLot ;
+         au:condition au:UsedGoodCondition ;
+         au:inCategory :cars ;
+         mu:uuid "1033492706" ;
+         au:VATonAuctionTax "21.0"^^xsd:float ;
+         au:amountOfObject 1 ;
+         au:auctionTax "12.0"^^xsd:float ;
+         au:description "This Buick from 1991 is in very good condition. New tires in 2020."^^xsd:string ;
+         au:endDateTime "2021-09-16T15:00:00"^^xsd:dateTime ;
+         au:minimumSellingAmount "5000.0"^^xsd:double ;
+         au:productVAT "21.0"^^xsd:float ;
+         au:startAmount "3000.0"^^xsd:double ;
+         au:stepAmount "100.0"^^xsd:double ;
+         au:subject "Buick 1991"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#ccCadillac
+:ccCadillac rdf:type owl:NamedIndividual ,
+                     au:MinimumBidAuctionLot ;
+            au:condition au:UsedGoodCondition ;
+            au:inCategory :cars ;
+            mu:uuid "1171476610" ;
+            au:VATonAuctionTax "21.0"^^xsd:float ;
+            au:amountOfObject 1 ;
+            au:auctionTax "12.0"^^xsd:float ;
+            au:description "A Cadillac Allante with a lot of repairs done. Automatic gearing system."^^xsd:string ;
+            au:endDateTime "2021-09-16T15:00:00"^^xsd:dateTime ;
+            au:minimumSellingAmount "20000.0"^^xsd:double ;
+            au:productVAT "21.0"^^xsd:float ;
+            au:startAmount "13000.0"^^xsd:double ;
+            au:stepAmount "1000.0"^^xsd:double ;
+            au:subject "Cacillac Allante"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#ccSaab
+:ccSaab rdf:type owl:NamedIndividual ,
+                 au:MinimumBidAuctionLot ;
+        au:condition au:UsedWornOutCondition ;
+        au:inCategory :cars ;
+        mu:uuid "1304816521" ;
+        au:VATonAuctionTax "21.0"^^xsd:float ;
+        au:amountOfObject 1 ;
+        au:auctionTax "12.0"^^xsd:float ;
+        au:description "Saab 9000 in used condition, but drive very smoothly."^^xsd:string ;
+        au:endDateTime "2021-09-16T15:00:00"^^xsd:dateTime ;
+        au:minimumSellingAmount "4000.0"^^xsd:double ;
+        au:productVAT "21.0"^^xsd:float ;
+        au:startAmount "1500.0"^^xsd:double ;
+        au:stepAmount "500.0"^^xsd:double ;
+        au:subject "Saab 9000"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#charlyCaronne
+:charlyCaronne rdf:type owl:NamedIndividual ,
+                        au:Seller ;
+               au:forCompany :caronne ;
+               foaf:account :charlyCaronneAccount ;
+               mu:uuid "3674439605" ;
+               au:VATnumber "1234567890" ;
+               au:address "Watersas 13\\n1980 Zemst" ;
+               au:balance "113000.0"^^xsd:double ;
+               au:email "charly@caronne.be" ;
+               au:language "nl" ;
+               au:timezone "GMT+1" ;
+               foaf:firstName "Charly" ;
+               foaf:lastName "Caronne" ;
+               foaf:name "Charly Caronne"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#charlyCaronneAccount
+:charlyCaronneAccount rdf:type owl:NamedIndividual ,
+                               foaf:OnlineAccount ;
+                      mu:uuid "5571684610" ;
+                      account:password "$2y$10$PnwKzCFszubR4w9OT74LdOx9whWJI2P67YC.jMrdF6CExODAak//C" ;
+                      account:salt "abc" ;
+                      foaf:accountName "charly" ;
+                      account:status <http://mu.semte.ch/vocabularies/account/status/active> .
+
+
+###  http://www.semanticweb.org/ben/data/auction#consumer
+:consumer rdf:type owl:NamedIndividual ,
+                   au:Category ;
+          mu:uuid "2476756235" ;
+          rdfs:label "Consumer"@en .
+
+
+###  http://www.semanticweb.org/ben/data/auction#eeAmplifier
+:eeAmplifier rdf:type owl:NamedIndividual ,
+                      au:ProlongedTimeAuctionLot ;
+             au:condition au:UsedGoodCondition ;
+             au:inCategory :consumer ;
+             mu:uuid "1421274950" ;
+             au:VATonAuctionTax "21.0"^^xsd:float ;
+             au:amountOfObject 1 ;
+             au:auctionTax "12.0"^^xsd:float ;
+             au:description "This old school Marantz amplifier lets you play music in style and class."^^xsd:string ;
+             au:endDateTime "2021-09-16T15:00:00"^^xsd:dateTime ;
+             au:incrementTime 600 ;
+             au:productVAT "21.0"^^xsd:float ;
+             au:startAmount "100.0"^^xsd:double ;
+             au:stepAmount "50.0"^^xsd:double ;
+             au:subject "Amplifier of brand Marantz"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#eeHeadphones
+:eeHeadphones rdf:type owl:NamedIndividual ,
+                       au:ProlongedTimeAuctionLot ;
+              au:condition au:NewDamagedPackagingCondition ;
+              au:inCategory :consumer ;
+              mu:uuid "2789310082" ;
+              au:VATonAuctionTax "21.0"^^xsd:float ;
+              au:amountOfObject 1 ;
+              au:auctionTax "12.0"^^xsd:float ;
+              au:description "The packaging is a little torn, but the contents still in mint condition."^^xsd:string ;
+              au:endDateTime "2021-09-16T15:00:00"^^xsd:dateTime ;
+              au:incrementTime 600 ;
+              au:productVAT "21.0"^^xsd:float ;
+              au:startAmount "150.0"^^xsd:double ;
+              au:stepAmount "50.0"^^xsd:double ;
+              au:subject "Beyerdynamic DT770Pro 250 Ohm Headphones"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#eeHomeCinemaKit
+:eeHomeCinemaKit rdf:type owl:NamedIndividual ,
+                          au:ProlongedTimeAuctionLot ;
+                 au:condition au:NewBrandNewCondition ;
+                 au:inCategory :consumer ;
+                 mu:uuid "448016065" ;
+                 au:VATonAuctionTax "21.0"^^xsd:float ;
+                 au:amountOfObject 1 ;
+                 au:auctionTax "12.0"^^xsd:float ;
+                 au:description "This home cinema kit from Sony has all the modern features including Blu-Ray and Bluetooth."^^xsd:string ;
+                 au:endDateTime "2021-09-16T15:00:00"^^xsd:dateTime ;
+                 au:incrementTime 600 ;
+                 au:productVAT "21.0"^^xsd:float ;
+                 au:startAmount "200.0"^^xsd:double ;
+                 au:stepAmount "50.0"^^xsd:double ;
+                 au:subject "Amplifier of brand Sony, 5.1 speakers"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#electronic
+:electronic rdf:type owl:NamedIndividual ,
+                     au:Category ;
+            au:parentCategory :consumer ;
+            mu:uuid "277884546" ;
+            rdfs:label "Electronic"@en .
+
+
+###  http://www.semanticweb.org/ben/data/auction#electronicExuberance
+:electronicExuberance rdf:type owl:NamedIndividual ,
+                               au:Company ;
+                      mu:uuid "1759245689" ;
+                      au:VATnumber "0987098744" ;
+                      au:address "Ionicpath 4.6\\n2823 Protionium" ;
+                      au:description "Electronics? We have it!" ;
+                      foaf:name "Electronic Exuberance" .
+
+
+###  http://www.semanticweb.org/ben/data/auction#hhDeepHouse1
+:hhDeepHouse1 rdf:type owl:NamedIndividual ,
+                       au:FixedTimeAuctionLot ;
+              au:condition au:NewBrandNewCondition ;
+              au:inCategory :housing ;
+              mu:uuid "2278333678" ;
+              au:VATonAuctionTax "21.0"^^xsd:float ;
+              au:amountOfObject 1 ;
+              au:auctionTax "17.0"^^xsd:float ;
+              au:description "This house is very modern with dark, smooth atmosphere." ;
+              au:endDateTime "2021-09-16T15:00:00"^^xsd:dateTime ;
+              au:productVAT "21.0"^^xsd:float ;
+              au:startAmount "100000.0"^^xsd:double ;
+              au:stepAmount "1000.0"^^xsd:double ;
+              au:subject "Prebuilt house in style 'Deephouse'."^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#hhDeepHouse2
+:hhDeepHouse2 rdf:type owl:NamedIndividual ,
+                       au:FixedTimeAuctionLot ;
+              au:condition au:NewBrandNewCondition ;
+              au:inCategory :housing ;
+              mu:uuid "109369202" ;
+              au:VATonAuctionTax "21.0"^^xsd:float ;
+              au:amountOfObject 1 ;
+              au:auctionTax "17.0"^^xsd:float ;
+              au:description "This house is very modern with dark, smooth atmosphere." ;
+              au:endDateTime "2021-09-16T15:00:00"^^xsd:dateTime ;
+              au:productVAT "21.0"^^xsd:float ;
+              au:startAmount "100000.0"^^xsd:double ;
+              au:stepAmount "1000.0"^^xsd:double ;
+              au:subject "Prebuilt house in style 'Deephouse'."^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#hhDeepHouse3
+:hhDeepHouse3 rdf:type owl:NamedIndividual ,
+                       au:FixedTimeAuctionLot ;
+              au:condition au:NewBrandNewCondition ;
+              au:inCategory :housing ;
+              mu:uuid "1609947485" ;
+              au:VATonAuctionTax "21.0"^^xsd:float ;
+              au:amountOfObject 1 ;
+              au:auctionTax "17.0"^^xsd:float ;
+              au:description "This house is very modern with dark, smooth atmosphere." ;
+              au:endDateTime "2021-09-16T15:00:00"^^xsd:dateTime ;
+              au:productVAT "21.0"^^xsd:float ;
+              au:startAmount "100000.0"^^xsd:double ;
+              au:stepAmount "1000.0"^^xsd:double ;
+              au:subject "Prebuilt house in style 'Deephouse'."^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#hhDeepHouse4
+:hhDeepHouse4 rdf:type owl:NamedIndividual ,
+                       au:FixedTimeAuctionLot ;
+              au:condition au:NewBrandNewCondition ;
+              au:inCategory :housing ;
+              mu:uuid "2954922799" ;
+              au:VATonAuctionTax "21.0"^^xsd:float ;
+              au:amountOfObject 1 ;
+              au:auctionTax "17.0"^^xsd:float ;
+              au:description "This house is very modern with dark, smooth atmosphere." ;
+              au:endDateTime "2021-09-16T15:00:00"^^xsd:dateTime ;
+              au:productVAT "21.0"^^xsd:float ;
+              au:startAmount "100000.0"^^xsd:double ;
+              au:stepAmount "1000.0"^^xsd:double ;
+              au:subject "Prebuilt house in style 'Deephouse'."^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#hhDeepHouse5
+:hhDeepHouse5 rdf:type owl:NamedIndividual ,
+                       au:FixedTimeAuctionLot ;
+              au:condition au:NewBrandNewCondition ;
+              au:inCategory :housing ;
+              mu:uuid "2259294776" ;
+              au:VATonAuctionTax "21.0"^^xsd:float ;
+              au:amountOfObject 1 ;
+              au:auctionTax "17.0"^^xsd:float ;
+              au:description "This house is very modern with dark, smooth atmosphere." ;
+              au:endDateTime "2021-09-16T15:00:00"^^xsd:dateTime ;
+              au:productVAT "21.0"^^xsd:float ;
+              au:startAmount "100000.0"^^xsd:double ;
+              au:stepAmount "1000.0"^^xsd:double ;
+              au:subject "Prebuilt house in style 'Deephouse'."^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#hhHughLaurie1
+:hhHughLaurie1 rdf:type owl:NamedIndividual ,
+                        au:FixedTimeAuctionLot ;
+               au:condition au:NewBrandNewCondition ;
+               au:inCategory :housing ;
+               mu:uuid "732184495" ;
+               au:VATonAuctionTax "21.0"^^xsd:float ;
+               au:amountOfObject 1 ;
+               au:auctionTax "17.0"^^xsd:float ;
+               au:description "A more classy house with a strong identity." ;
+               au:endDateTime "2021-09-16T15:00:00"^^xsd:dateTime ;
+               au:productVAT "21.0"^^xsd:float ;
+               au:startAmount "100000.0"^^xsd:double ;
+               au:stepAmount "1000.0"^^xsd:double ;
+               au:subject "Prebuilt house in style 'Hugh Laurie'."^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#hhHughLaurie2
+:hhHughLaurie2 rdf:type owl:NamedIndividual ,
+                        au:FixedTimeAuctionLot ;
+               au:condition au:NewBrandNewCondition ;
+               au:inCategory :housing ;
+               mu:uuid "2318208327" ;
+               au:VATonAuctionTax "21.0"^^xsd:float ;
+               au:amountOfObject 1 ;
+               au:auctionTax "17.0"^^xsd:float ;
+               au:description "A more classy house with a strong identity." ;
+               au:endDateTime "2021-09-16T15:00:00"^^xsd:dateTime ;
+               au:productVAT "21.0"^^xsd:float ;
+               au:startAmount "100000.0"^^xsd:double ;
+               au:stepAmount "1000.0"^^xsd:double ;
+               au:subject "Prebuilt house in style 'Hugh Laurie'."^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#hhHughLaurie3
+:hhHughLaurie3 rdf:type owl:NamedIndividual ,
+                        au:FixedTimeAuctionLot ;
+               au:condition au:NewBrandNewCondition ;
+               au:inCategory :housing ;
+               mu:uuid "701155893" ;
+               au:VATonAuctionTax "21.0"^^xsd:float ;
+               au:amountOfObject 1 ;
+               au:auctionTax "17.0"^^xsd:float ;
+               au:description "A more classy house with a strong identity." ;
+               au:endDateTime "2021-09-16T15:00:00"^^xsd:dateTime ;
+               au:productVAT "21.0"^^xsd:float ;
+               au:startAmount "100000.0"^^xsd:double ;
+               au:stepAmount "1000.0"^^xsd:double ;
+               au:subject "Prebuilt house in style 'Hugh Laurie'."^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#hhHughLaurie4
+:hhHughLaurie4 rdf:type owl:NamedIndividual ,
+                        au:FixedTimeAuctionLot ;
+               au:condition au:NewBrandNewCondition ;
+               au:inCategory :housing ;
+               mu:uuid "1397900762" ;
+               au:VATonAuctionTax "21.0"^^xsd:float ;
+               au:amountOfObject 1 ;
+               au:auctionTax "17.0"^^xsd:float ;
+               au:description "A more classy house with a strong identity." ;
+               au:endDateTime "2021-09-16T15:00:00"^^xsd:dateTime ;
+               au:productVAT "21.0"^^xsd:float ;
+               au:startAmount "100000.0"^^xsd:double ;
+               au:stepAmount "1000.0"^^xsd:double ;
+               au:subject "Prebuilt house in style 'Hugh Laurie'."^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#hhHughLaurie5
+:hhHughLaurie5 rdf:type owl:NamedIndividual ,
+                        au:FixedTimeAuctionLot ;
+               au:condition au:NewBrandNewCondition ;
+               au:inCategory :housing ;
+               mu:uuid "2168631088" ;
+               au:VATonAuctionTax "21.0"^^xsd:float ;
+               au:amountOfObject 1 ;
+               au:auctionTax "17.0"^^xsd:float ;
+               au:description "A more classy house with a strong identity." ;
+               au:endDateTime "2021-09-16T15:00:00"^^xsd:dateTime ;
+               au:productVAT "21.0"^^xsd:float ;
+               au:startAmount "100000.0"^^xsd:double ;
+               au:stepAmount "1000.0"^^xsd:double ;
+               au:subject "Prebuilt house in style 'Hugh Laurie'."^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#housing
+:housing rdf:type owl:NamedIndividual ,
+                  au:Category ;
+         au:parentCategory :realEstate ;
+         mu:uuid "3138133012" ;
+         rdfs:label "Housing"@en .
+
+
+###  http://www.semanticweb.org/ben/data/auction#housingHooligans
+:housingHooligans rdf:type owl:NamedIndividual ,
+                           au:Company ;
+                  mu:uuid "3735841352" ;
+                  au:VATnumber "99876555678" ;
+                  au:address "Bollenberg 17\\n3210 Lubbeek" ;
+                  au:description "We sell prebuilt houses. Just put the walls together." ;
+                  foaf:name "Housing Hooligans" .
+
+
+###  http://www.semanticweb.org/ben/data/auction#industrial
+:industrial rdf:type owl:NamedIndividual ,
+                     au:Category ;
+            mu:uuid "1519324201" ;
+            rdfs:label "Industrial"@en .
+
+
+###  http://www.semanticweb.org/ben/data/auction#industry
+:industry rdf:type owl:NamedIndividual ,
+                   au:Category ;
+          au:parentCategory :realEstate ;
+          mu:uuid "1988378924" ;
+          rdfs:label "Industry"@en .
+
+
+###  http://www.semanticweb.org/ben/data/auction#land
+:land rdf:type owl:NamedIndividual ,
+               au:Category ;
+      au:parentCategory :realEstate ;
+      mu:uuid "1409880474" ;
+      rdfs:label "Land"@en .
+
+
+###  http://www.semanticweb.org/ben/data/auction#landVehicles
+:landVehicles rdf:type owl:NamedIndividual ,
+                       au:Category ;
+              au:parentCategory :transport ;
+              mu:uuid "3184719597" ;
+              rdfs:label "Land Vehicles"@en .
+
+
+###  http://www.semanticweb.org/ben/data/auction#office
+:office rdf:type owl:NamedIndividual ,
+                 au:Category ;
+        au:parentCategory :realEstate ;
+        mu:uuid "1900318540" ;
+        rdfs:label "Office"@en .
+
+
+###  http://www.semanticweb.org/ben/data/auction#other
+:other rdf:type owl:NamedIndividual ,
+                au:Category ;
+       au:parentCategory :consumer ;
+       mu:uuid "2981055975" ;
+       rdfs:label "Other"@en .
+
+
+###  http://www.semanticweb.org/ben/data/auction#realEstate
+:realEstate rdf:type owl:NamedIndividual ,
+                     au:Category ;
+            mu:uuid "2277698659" ;
+            rdfs:label "Real Estate"@en .
+
+
+###  http://www.semanticweb.org/ben/data/auction#redpencilAuctions
+:redpencilAuctions rdf:type owl:NamedIndividual ,
+                            au:Company ;
+                   mu:uuid "6043930978" ;
+                   au:VATnumber "752364096779" ;
+                   au:address "Cantersteen 10\\n1000 Brussels" ;
+                   au:description "Full Stack web development using Linked Data and Microservice achitecture." ;
+                   foaf:name "RedPencil Auctions" .
+
+
+###  http://www.semanticweb.org/ben/data/auction#selineSelzer
+:selineSelzer rdf:type owl:NamedIndividual ,
+                       au:Seller ;
+              foaf:account :selineSelzerAccount ;
+              mu:uuid "2942353829" ;
+              au:VATnumber "1234567890" ;
+              au:address "Nieuwstraat 51\\n1000 Brussels" ;
+              au:balance "100000.0"^^xsd:double ;
+              au:email "seline.selzer@selzer.com" ;
+              au:language "fr" ;
+              au:timezone "GMT+1" ;
+              foaf:firstName "Seline" ;
+              foaf:lastName "Selzer" ;
+              foaf:name "Seline Selzer"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#selineSelzerAccount
+:selineSelzerAccount rdf:type owl:NamedIndividual ,
+                              foaf:OnlineAccount ;
+                     mu:uuid "6571684610" ;
+                     account:password "$2y$10$PnwKzCFszubR4w9OT74LdOx9whWJI2P67YC.jMrdF6CExODAak//C" ;
+                     account:salt "abc" ;
+                     foaf:accountName "seline" ;
+                     account:status <http://mu.semte.ch/vocabularies/account/status/active> .
+
+
+###  http://www.semanticweb.org/ben/data/auction#sharadSoller
+:sharadSoller rdf:type owl:NamedIndividual ,
+                       au:Seller ;
+              foaf:account :sharadSollerAccount ;
+              mu:uuid "1614942939" ;
+              au:VATnumber "1234567890" ;
+              au:address "Nieuwstraat 35\\n1000 Brussels" ;
+              au:balance "100000.0"^^xsd:double ;
+              au:email "shared.soller@soller.com" ;
+              au:language "fr" ;
+              au:timezone "GMT+1" ;
+              foaf:firstName "Sharad" ;
+              foaf:lastName "Soller" ;
+              foaf:name "Sharad Soller"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ben/data/auction#sharadSollerAccount
+:sharadSollerAccount rdf:type owl:NamedIndividual ,
+                              foaf:OnlineAccount ;
+                     mu:uuid "7571684610" ;
+                     account:password "$2y$10$PnwKzCFszubR4w9OT74LdOx9whWJI2P67YC.jMrdF6CExODAak//C" ;
+                     account:salt "abc" ;
+                     foaf:accountName "sharad" ;
+                     account:status <http://mu.semte.ch/vocabularies/account/status/active> .
+
+
+###  http://www.semanticweb.org/ben/data/auction#tools
+:tools rdf:type owl:NamedIndividual ,
+                au:Category ;
+       au:parentCategory :consumer ;
+       mu:uuid "3649655522" ;
+       rdfs:label "Tools"@en .
+
+
+###  http://www.semanticweb.org/ben/data/auction#transport
+:transport rdf:type owl:NamedIndividual ,
+                    au:Category ;
+           mu:uuid "908171407" ;
+           rdfs:label "Transport"@en .
+
+
+###  http://www.semanticweb.org/ben/data/auction#trucks
+:trucks rdf:type owl:NamedIndividual ,
+                 au:Category ;
+        au:parentCategory :landVehicles ;
+        mu:uuid "3746399742" ;
+        rdfs:label "Trucks"@en .
+
+
+###  http://www.semanticweb.org/ben/data/auction#waterVehicles
+:waterVehicles rdf:type owl:NamedIndividual ,
+                        au:Category ;
+               au:parentCategory :transport ;
+               mu:uuid "3340346959" ;
+               rdfs:label "Water Vehicles"@en .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#AbsoluteAuctionLot
+au:AbsoluteAuctionLot rdf:type owl:NamedIndividual ;
+                      mu:uuid "2320917121" .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#FixedTimeAuctionLot
+au:FixedTimeAuctionLot rdf:type owl:NamedIndividual ;
+                       mu:uuid "1278909430" .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#Lot
+au:Lot rdf:type owl:NamedIndividual ;
+       mu:uuid "8454754966" .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#MinimumBidAuctionLot
+au:MinimumBidAuctionLot rdf:type owl:NamedIndividual ;
+                        mu:uuid "2019230098" .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#ProlongedTimeAuctionLot
+au:ProlongedTimeAuctionLot rdf:type owl:NamedIndividual ;
+                           mu:uuid "3575446882" .
+
+
+###  http://www.semanticweb.org/ben/ontologies/auction#ReserveAuctionLot
+au:ReserveAuctionLot rdf:type owl:NamedIndividual ;
+                     mu:uuid "3952999146" .
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

@@ -1,0 +1,29 @@
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX tac: <http://tasks-at-hand.com/vocabularies/core/>
+PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
+PREFIX rm:  <http://mu.semte.ch/vocabularies/logical-delete/>
+PREFIX typedLiterals: <http://mu.semte.ch/vocabularies/typed-literals/>
+PREFIX mu:  <http://mu.semte.ch/vocabularies/core/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX app: <http://mu.semte.ch/app/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+PREFIX au:      <http://www.semanticweb.org/ben/ontologies/auction#>
+PREFIX aud:     <http://www.semanticweb.org/ben/data/auction#>
+PREFIX session: <http://mu.semte.ch/vocabularies/session/>
+PREFIX account: <http://mu.semte.ch/vocabularies/account/>
+
+INSERT {
+  GRAPH ?g {
+    ?s au:funnyValue "abc123" .
+  }
+} WHERE {
+  GRAPH ?g {
+    ?s a au:Client ;
+       foaf:firstName "Ben" .
+    bind(?s as ?s) .
+    bind(?g as ?g) .
+  }
+}
+

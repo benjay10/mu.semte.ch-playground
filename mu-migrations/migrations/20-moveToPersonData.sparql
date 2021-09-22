@@ -1,0 +1,31 @@
+PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+PREFIX au: <http://www.semanticweb.org/ben/ontologies/auction#>
+PREFIX aud: <http://www.semanticweb.org/ben/data/auction#>
+PREFIX session: <http://mu.semte.ch/vocabularies/session/>
+PREFIX account: <http://mu.semte.ch/vocabularies/account/>
+PREFIX muMigr: <http://mu.semte.ch/vocabularies/migrations/>
+DELETE {
+    GRAPH <http://mu.semte.ch/application> {
+		?s ?p ?o .
+	}
+}
+INSERT {
+	GRAPH ?ng {
+		?s ?p ?o .
+	}
+}
+WHERE {
+    GRAPH <http://mu.semte.ch/application> {
+		?s a ?type ;
+		   mu:uuid ?uuid ;
+		   ?p ?o .
+		FILTER (?p NOT IN (mu:uuid, foaf:account, rdf:type))
+		VALUES ?type {
+			au:Client
+			au:Administrator
+			au:Seller
+		}
+		bind(iri(concat("http://mu.semte.ch/persondata/", ?uuid)) as ?ng)
+    }
+}
+
